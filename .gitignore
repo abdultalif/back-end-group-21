@@ -1,0 +1,5 @@
+# Direktori node_modules
+node_modules/
+
+# Berkas env
+.env
