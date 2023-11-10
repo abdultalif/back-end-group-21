@@ -1,13 +1,19 @@
+
 import express from "express";
+import { publicRouter } from "../src/route/public-api.js";
+import { errorMiddleware } from "../src/middleware/error-middleware.js";
 import dotenv from "dotenv/config";
 
-const app = express();
+export const web = express();
+web.use(express.json());
+web.use(express.urlencoded({ extended: true }));
 
+web.use(publicRouter);
 
-app.get('/', (req, res) => {
-    res.send('test');
-});
+web.use(errorMiddleware);
 
-app.listen(process.env.port, () => {
+web.listen(process.env.port, () => {
     console.log(`port berjalan di http://localhost:${process.env.port}`);
 });
+
+

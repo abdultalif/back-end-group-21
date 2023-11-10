@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "Capstone Project Group 21 RevoU Academy",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Abdul Talif Parinduri",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
     "@prisma/client": "^4.15.0",
     "bcrypt": "^5.1.0",
