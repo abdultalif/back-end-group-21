@@ -32,3 +32,35 @@ Response Body Error :
   "errors" : "Username already registered"
 }
 ```
+
+
+## Login User API
+
+Endpoint : POST /api/users/login
+
+Request Body :
+
+```json
+{
+  "username" : "pzn",
+  "password" : "rahasia"
+}
+```
+
+Response Body Success : 
+
+```json
+{
+  "data" : {
+    "token" : "unique-token"
+  }
+}
+```
+
+Response Body Error :
+
+```json
+{
+  "errors" : "Username or password wrong"
+}
+```
