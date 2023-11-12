@@ -6,8 +6,8 @@ const register = async (req, res, next) => {
         res.status(200).json({
             data: result
         });
-    } catch (e) {
-        next(e);
+    } catch (error) {
+        next(error);
     }
 }
 
@@ -34,9 +34,22 @@ const getUser = async (req, res, next) => {
     }
 }
 
+const logout = async (req, res, next) => {
+    try {
+        await userService.logout(req.user.id);
+        res.status(200).json({
+            data: "OK"
+        });
+    } catch (error) {
+        next(error)
+    }
+}
+
 
 export default {
     register,
     login,
-    getUser
+    getUser,
+    logout
+
 }

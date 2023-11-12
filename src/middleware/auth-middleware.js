@@ -6,14 +6,14 @@ export const authentication = async (req, res, next) => {
 
     if (!tokenHeader) {
         res.status(401).json({
-            errors: "token ga ada"
+            errors: "Unauthorized"
         }).end();
     } else {
         const [bearer, token] = tokenHeader.split(' ');
 
         if (bearer !== 'Bearer') {
             res.status(401).json({
-                errors: "masih ada"
+                errors: "Unauthorized"
             }).end();
         } else {
 
@@ -25,7 +25,7 @@ export const authentication = async (req, res, next) => {
             console.log(user)
             if (!user) {
                 res.status(401).json({
-                    errors: "user ga ada"
+                    errors: "Unauthorized"
                 }).end();
             } else {
                 req.user = user;

@@ -83,6 +83,7 @@ const getUser = async (username) => {
             username: username
         },
         select: {
+            id: true,
             username: true,
             name: true
         }
@@ -97,10 +98,39 @@ const getUser = async (username) => {
 }
 
 
+const logout = async (userId) => {
+    // userId = validate(getUserValidation, userId);
+
+    const user = await prismaClient.user.findUnique({
+        where: {
+            id: userId
+        }
+    });
+
+    if (!user) {
+        throw new ResponseError(404, "User is not found");
+    }
+
+    return prismaClient.user.update({
+        where: {
+            id: userId
+        },
+        data: {
+            token: null
+        },
+        select: {
+            id: true,
+            username: true
+        }
+    });
+}
+
+
 
 
 export default {
     register,
     login,
-    getUser
+    getUser,
+    logout
 }
