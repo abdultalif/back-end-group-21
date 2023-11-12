@@ -101,5 +101,6 @@ const getUser = async (username) => {
 
 export default {
     register,
-    login
+    login,
+    getUser
 }
