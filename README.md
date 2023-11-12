@@ -1,4 +1,4 @@
-<img src="https://drive.google.com/file/d/1BuJbCiMZ9mP_5-edUPlhVhHZUreY-muA/view" />
+<img src="https://github.com/Kampus-Merdeka-Software-Engineering/FE-2-section-jakarta-group-21/blob/main/asset/logoShop.png" />
 <p>Halo, ini adalah aplikasi Back-End yang dibangun untuk memenuhi capstone project di RevoU Academy.<br>
 
 ## Installation
