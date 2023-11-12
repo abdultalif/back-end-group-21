@@ -36,14 +36,14 @@ Response Body Error :
 
 ## Login User API
 
-Endpoint : POST /api/users/login
+Endpoint : POST /api/login
 
 Request Body :
 
 ```json
 {
-  "username" : "pzn",
-  "password" : "rahasia"
+  "username" : "talif",
+  "password" : "12345"
 }
 ```
 
