@@ -100,8 +100,6 @@ const getUser = async (email) => {
 
 
 const logout = async (userId) => {
-    // userId = validate(getUserValidation, userId);
-
     const user = await prismaClient.user.findUnique({
         where: {
             id: userId

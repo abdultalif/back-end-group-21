@@ -8,9 +8,10 @@ Request Body :
 
 ```json
 {
-  "username" : "talif",
+  "email" : "abdultalif@gmail.com",
   "password" : "12345",
-  "name" : "Abdul Talif Parinduri"
+  "name" : "Abdul Talif Parinduri",
+  "no_telp" : "08123456789"
 }
 ```
 
@@ -19,8 +20,9 @@ Response Body Success :
 ```json
 {
   "data" : {
-    "username" : "talif",
-    "name" : "Abdul Talif Parinduri"
+    "email" : "abdultalif@gmail.com",
+    "name" : "Abdul Talif Parinduri",
+    "no_telp" : "08123456789"
   }
 }
 ```
@@ -29,7 +31,7 @@ Response Body Error :
 
 ```json
 {
-  "errors" : "Username already registered"
+  "errors" : "Email already registered"
 }
 ```
 
@@ -42,7 +44,7 @@ Request Body :
 
 ```json
 {
-  "username" : "talif",
+  "email" : "abdultalif@gmail.com",
   "password" : "12345"
 }
 ```
@@ -61,6 +63,6 @@ Response Body Error :
 
 ```json
 {
-  "errors" : "Username or password wrong"
+  "errors" : "Email or password wrong"
 }
 ```
