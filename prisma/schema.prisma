@@ -18,3 +18,13 @@ model User {
   no_telp  String  @db.VarChar(100)
   token    String? @db.VarChar(100)
 }
+
+model Pizza {
+  id          Int     @id @default(autoincrement())
+  name        String  @db.VarChar(100)
+  description String? @db.VarChar(100)
+  price       String  @db.VarChar(100)
+  stok        String  @db.VarChar(100)
+  image       String  @db.VarChar(100)
+  category    String  @db.VarChar(100)
+}

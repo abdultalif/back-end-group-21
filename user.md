@@ -67,6 +67,33 @@ Response Body Error :
 }
 ```
 
+## Autentikasi User API
+
+Endpoint : GET /api/users/current
+
+Headers :
+- Authorization : token
+
+Response Body Success:
+
+```json
+{
+  "data" : {
+    "email" : "abdultalif@gmail.com",
+    "name" : "Abdul Talif Parinduri"
+  }
+}
+```
+
+Response Body Error : 
+
+```json
+{
+  "errors" : "Unauthorized"
+}
+```
+
+
 ## Logout User API
 
 Endpoint : DELETE /api/users/logout
