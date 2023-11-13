@@ -1,9 +1,10 @@
 -- CreateTable
 CREATE TABLE `User` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `username` VARCHAR(100) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
     `password` VARCHAR(100) NOT NULL,
     `name` VARCHAR(100) NOT NULL,
+    `no_telp` VARCHAR(100) NOT NULL,
     `token` VARCHAR(100) NULL,
 
     PRIMARY KEY (`id`)

@@ -24,8 +24,8 @@ const login = async (req, res, next) => {
 
 const getUser = async (req, res, next) => {
     try {
-        const username = req.user.username;
-        const result = await userService.getUser(username);
+        const email = req.user.email;
+        const result = await userService.getUser(email);
         res.status(200).json({
             data: result
         });

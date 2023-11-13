@@ -17,12 +17,12 @@ const register = async (request) => {
 
     const countUser = await prismaClient.user.count({
         where: {
-            username: user.username
+            email: user.email
         }
     });
 
     if (countUser === 1) {
-        throw new ResponseError(400, "Username already exists");
+        throw new ResponseError(400, "Email already exists");
     }
 
     user.password = await bcrypt.hash(user.password, 10);
@@ -30,7 +30,7 @@ const register = async (request) => {
     return prismaClient.user.create({
         data: user,
         select: {
-            username: true,
+            email: true,
             name: true
         }
     });
@@ -42,22 +42,22 @@ const login = async (request) => {
     const loginRequest = validate(loginUserValidation, request);
     const user = await prismaClient.user.findFirst({
         where: {
-            username: loginRequest.username
+            email: loginRequest.email
         },
         select: {
             id: true,
-            username: true,
+            email: true,
             password: true
         }
     });
 
     if (!user) {
-        throw new ResponseError(401, "Username or password wrong");
+        throw new ResponseError(401, "Email or password wrong");
     }
 
     const isPasswordValid = await bcrypt.compare(loginRequest.password, user.password);
     if (!isPasswordValid) {
-        throw new ResponseError(401, "Username or password wrong");
+        throw new ResponseError(401, "Email or password wrong");
     }
 
     const token = uuid().toString();
@@ -75,17 +75,18 @@ const login = async (request) => {
 }
 
 
-const getUser = async (username) => {
-    username = validate(getUserValidation, username);
+const getUser = async (email) => {
+    email = validate(getUserValidation, email);
 
     const user = await prismaClient.user.findFirst({
         where: {
-            username: username
+            email: email
         },
         select: {
             id: true,
-            username: true,
-            name: true
+            email: true,
+            name: true,
+            no_telp: true
         }
     });
 
@@ -120,7 +121,7 @@ const logout = async (userId) => {
         },
         select: {
             id: true,
-            username: true
+            email: true
         }
     });
 }
