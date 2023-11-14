@@ -17,9 +17,12 @@ model User {
   name     String  @db.VarChar(100)
   no_telp  String  @db.VarChar(100)
   token    String? @db.VarChar(100)
+  menus    Menu[]
+
+  @@map("users")
 }
 
-model Pizza {
+model Menu {
   id          Int     @id @default(autoincrement())
   name        String  @db.VarChar(100)
   description String? @db.VarChar(100)
@@ -27,4 +30,8 @@ model Pizza {
   stok        String  @db.VarChar(100)
   image       String  @db.VarChar(100)
   category    String  @db.VarChar(100)
+  user_id     Int
+  user        User    @relation(fields: [user_id], references: [id])
+
+  @@map("menus")
 }
