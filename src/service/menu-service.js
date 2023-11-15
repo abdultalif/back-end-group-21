@@ -4,9 +4,8 @@ import { createMenuValidation } from "../validation/menu-validation.js"
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
-const createMenu = async (userId, request) => {
+const createMenu = async (request, file) => {
     const menu = validate(createMenuValidation, request);
-    menu.user_id = userId;
 
     const countUser = await prisma.menu.count({
         where: {
@@ -17,6 +16,8 @@ const createMenu = async (userId, request) => {
     if (countUser === 1) {
         throw new ResponseError(400, "Menu already exists");
     }
+
+    menu.image = file.filename;
 
     return await prisma.menu.create({
         data: menu,

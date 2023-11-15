@@ -17,7 +17,6 @@ model User {
   name     String  @db.VarChar(100)
   no_telp  String  @db.VarChar(100)
   token    String? @db.VarChar(100)
-  menus    Menu[]
 
   @@map("users")
 }
@@ -30,8 +29,6 @@ model Menu {
   stok        String  @db.VarChar(100)
   image       String  @db.VarChar(100)
   category    String  @db.VarChar(100)
-  user_id     Int
-  user        User    @relation(fields: [user_id], references: [id])
 
-  @@map("menus")
+  @@map("menu")
 }
