@@ -34,7 +34,26 @@ const createMenu = async (request, file) => {
 }
 
 
+const deleteMenu = async (menuId) => {
+    const menuDatabase = await prisma.menu.findUnique({
+        where: {
+            id: parseInt(menuId)
+        }
+    });
+
+    if (!menuDatabase) {
+        throw new ResponseError(404, "menu is not found");
+    }
+
+    return await prisma.menu.delete({
+        where: {
+            id: parseInt(menuId)
+        }
+    })
+}
+
 export default {
     createMenu,
+    deleteMenu
 
 }
