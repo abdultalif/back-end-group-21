@@ -52,8 +52,13 @@ const deleteMenu = async (menuId) => {
     })
 }
 
+const menu = async () => {
+    return await prisma.menu.findMany();
+}
+
 export default {
     createMenu,
-    deleteMenu
+    deleteMenu,
+    menu
 
 }

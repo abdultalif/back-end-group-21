@@ -23,7 +23,19 @@ const deleteMenu = async (req, res, next) => {
     }
 }
 
+const menu = async (req, res, next) => {
+    try {
+        const result = await menuService.menu();
+        res.status(200).json({
+            data: result
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
 export default {
     createMenu,
-    deleteMenu
+    deleteMenu,
+    menu
 }
