@@ -17,6 +17,7 @@ userRouter.delete('/api/users/logout', userController.logout);
 userRouter.post('/api/menu', uploadImage, menuController.createMenu);
 userRouter.delete('/api/menu/:menuId', menuController.deleteMenu);
 userRouter.get('/api/menu', menuController.menus);
+userRouter.put('/api/menu/:menuId', uploadImage, menuController.updateMenu);
 userRouter.get('/api/menu/:menuId', menuController.menu);
 
 export {

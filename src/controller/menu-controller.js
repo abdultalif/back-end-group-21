@@ -34,6 +34,18 @@ const menus = async (req, res, next) => {
     }
 }
 
+const updateMenu = async (req, res, next) => {
+    try {
+        const menuId = req.params.menuId;
+        const result = await menuService.updateMenu(menuId, req.body, req.file);
+        res.status(200).json({
+            data: result
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
 const menu = async (req, res, next) => {
     try {
         const menuId = parseInt(req.params.menuId);
@@ -50,5 +62,6 @@ export default {
     createMenu,
     deleteMenu,
     menus,
+    updateMenu,
     menu
 }

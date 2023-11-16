@@ -1,6 +1,6 @@
 import { validate } from "../validation/validation.js";
 import { ResponseError } from "../error/response-error.js";
-import { createMenuValidation } from "../validation/menu-validation.js"
+import { createMenuValidation, updateMenuValidation } from "../validation/menu-validation.js"
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
@@ -56,6 +56,42 @@ const menus = async () => {
     return await prisma.menu.findMany();
 }
 
+const updateMenu = async (menuId, data, file) => {
+    const existingMenu = await prisma.menu.findUnique({
+        where: {
+            id: parseInt(menuId)
+        }
+    });
+
+    if (!existingMenu) {
+        throw new ResponseError(404, "Menu is not found");
+    }
+
+    // Validate the updated data
+    const updatedMenu = validate(updateMenuValidation, { ...existingMenu, ...data });
+
+    // Update the image if a new file is provided
+    if (file) {
+        updatedMenu.image = file.filename;
+    }
+
+    return await prisma.menu.update({
+        where: {
+            id: parseInt(menuId)
+        },
+        data: updatedMenu,
+        select: {
+            id: true,
+            name: true,
+            description: true,
+            price: true,
+            stok: true,
+            category: true,
+            image: true
+        }
+    });
+};
+
 const menu = async (menuId) => {
     const menu = await prisma.menu.findUnique({
         where: {
@@ -74,6 +110,7 @@ export default {
     createMenu,
     deleteMenu,
     menus,
+    updateMenu,
     menu
 
 }
