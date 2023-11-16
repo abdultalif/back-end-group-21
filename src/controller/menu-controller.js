@@ -23,9 +23,21 @@ const deleteMenu = async (req, res, next) => {
     }
 }
 
+const menus = async (req, res, next) => {
+    try {
+        const result = await menuService.menus();
+        res.status(200).json({
+            data: result
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
 const menu = async (req, res, next) => {
     try {
-        const result = await menuService.menu();
+        const menuId = parseInt(req.params.menuId);
+        const result = await menuService.menu(menuId);
         res.status(200).json({
             data: result
         })
@@ -37,5 +49,6 @@ const menu = async (req, res, next) => {
 export default {
     createMenu,
     deleteMenu,
+    menus,
     menu
 }
