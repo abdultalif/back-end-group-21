@@ -36,31 +36,39 @@ Response Body Error :
 
 ```json
 {
-  "errors" : "Email already registered"
+  "errors": "Menu already exists"
 }
 ```
 
+## Get Menu API
 
-## Login User API
+Endpoint : GET /api/menu
 
-Endpoint : POST /api/login
+Headers :
+- Authorization : token
 
-Request Body :
-
-```json
-{
-  "email" : "abdultalif@gmail.com",
-  "password" : "12345"
-}
-```
-
-Response Body Success : 
+Response Body Success :
 
 ```json
 {
   "data" : {
-    "token" : "unique-token"
-  }
+        "id": 1,
+        "name": "Coca Cola",
+        "description": null,
+        "price": "10000",
+        "stok": "12",
+        "category": "Drink",
+        "image": "1700416199436.png"
+    },
+    {
+        "id": 2,
+        "name": "Pizza California",
+        "description": null,
+        "price": "180000",
+        "stok": "20",
+        "category": "Pizza",
+        "image": "1700416100436.png"
+    }
 }
 ```
 
@@ -68,25 +76,40 @@ Response Body Error :
 
 ```json
 {
-  "errors" : "Email or password wrong"
+  "errors" : "Menu is not found"
 }
 ```
 
-## Autentikasi User API
 
-Endpoint : GET /api/users/current
+## Update Menu API
+
+Endpoint : PUT /api/menu/:id
 
 Headers :
 - Authorization : token
 
-Response Body Success:
+Query form-data :
+- name: Coca Cola
+- description: Optional description
+- price: 10000
+- stok: 12
+- image: menu_image.jpg
+- category: Drink
+
+
+Response Body Success :
 
 ```json
 {
-  "data" : {
-    "email" : "abdultalif@gmail.com",
-    "name" : "Abdul Talif Parinduri"
-  }
+  "data": {
+        "id": 1,
+        "name": "Coca Cola",
+        "description": null,
+        "price": "10000",
+        "stok": "12",
+        "category": "Drink",
+        "image": "1700416199436.png"
+    }
 }
 ```
 
@@ -94,19 +117,50 @@ Response Body Error :
 
 ```json
 {
-  "errors" : "Unauthorized"
+  "errors": "Menu is not found"
 }
 ```
 
+## Get Menu API By Id
 
-## Logout User API
-
-Endpoint : DELETE /api/users/logout
+Endpoint : GET /api/menu/:id
 
 Headers :
 - Authorization : token
 
-Response Body Success : 
+Response Body Success :
+
+```json
+{
+  "data" : {
+        "id": 1,
+        "name": "Coca Cola",
+        "description": null,
+        "price": "10000",
+        "stok": "12",
+        "category": "Drink",
+        "image": "1700416199436.png"
+    }
+}
+```
+
+Response Body Error :
+
+```json
+{
+  "errors" : "Menu is not found"
+}
+```
+
+
+## Remove Menu API
+
+Endpoint : DELETE /api/menu/:id
+
+Headers :
+- Authorization : token
+
+Response Body Success :
 
 ```json
 {
@@ -114,10 +168,10 @@ Response Body Success :
 }
 ```
 
-Response Body Error : 
+Response Body Error :
 
 ```json
 {
-  "errors" : "Unauthorized"
+  "errors" : "Menu is not found"
 }
 ```
