@@ -67,10 +67,8 @@ const updateMenu = async (menuId, data, file) => {
         throw new ResponseError(404, "Menu is not found");
     }
 
-    // Validate the updated data
     const updatedMenu = validate(updateMenuValidation, { ...existingMenu, ...data });
 
-    // Update the image if a new file is provided
     if (file) {
         updatedMenu.image = file.filename;
     }
